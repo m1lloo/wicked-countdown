@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wicked — For Good: Countdown</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --wicked-green: #1aa04a;
+      --wicked-dark: #0b0b0b;
+      --panel: rgba(255,255,255,0.06);
+    }
+    html,body{height:100%;}
+    body{
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(circle at 10% 20%, rgba(26,160,74,0.12), transparent 10%),
+                  linear-gradient(180deg, #071018 0%, #071617 40%, #02120f 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .brand {
+      font-family: 'Cinzel', serif;
+      color: var(--wicked-green);
+      letter-spacing: 2px;
+    }
+
+    .countdown-card{
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+
+    .time-block{
+      min-width:96px;
+    }
+
+    .time-value{
+      font-weight:700;
+      font-size:2.2rem;
+      font-family: 'Cinzel', serif;
+      color: var(--wicked-green);
+    }
+
+    .subtitle{
+      color: #cdd9d0;
+    }
+
+    .sparkle{
+      position:absolute;
+      right: -40px;
+      top: -40px;
+      width:160px;
+      opacity:0.12;
+      transform: rotate(12deg);
+    }
+
+    footer small{opacity:0.7}
+
+    @media (max-width:575px){
+      .time-value{font-size:1.6rem}
+      .time-block{min-width:70px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100 justify-content-center">
+      <div class="col-12 col-md-9 col-lg-7">
+        <div class="p-4 p-md-5 countdown-card rounded-4 position-relative">
+
+          <!-- decorative SVG hat / sparkle -->
+          <svg class="sparkle" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <g fill="none" stroke="url(#g)" stroke-width="2">
+              <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#1aa04a"></stop>
+                  <stop offset="1" stop-color="#8ef3b1"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M100 10 L120 70 L180 90 L120 110 L100 170 L80 110 L20 90 L80 70 Z" fill="rgba(26,160,74,0.06)"/>
+            </g>
+          </svg>
+
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h1 class="mb-0 brand display-6">Wicked</h1>
+              <p class="mb-0 subtitle">Part Two — <strong>For Good</strong></p>
+            </div>
+            <div class="text-end">
+              <small class="text-muted">UK Release</small>
+              <div class="fw-semibold">21 November 2025</div>
+            </div>
+          </div>
+
+          <hr class="border-secondary opacity-25">
+
+          <div class="text-center py-4">
+            <p class="lead mb-3">Countdown to UK cinema release</p>
+
+            <div id="countdown" class="d-flex justify-content-center gap-3 flex-wrap">
+              <div class="card bg-transparent border-0 text-center time-block">
+                <div class="card-body p-2">
+                  <div id="days" class="time-value">—</div>
+                  <div class="small subtitle">Days</div>
+                </div>
+              </div>
+
+              <div class="card bg-transparent border-0 text-center time-block">
+                <div class="card-body p-2">
+                  <div id="hours" class="time-value">—</div>
+                  <div class="small subtitle">Hours</div>
+                </div>
+              </div>
+
+              <div class="card bg-transparent border-0 text-center time-block">
+                <div class="card-body p-2">
+                  <div id="minutes" class="time-value">—</div>
+                  <div class="small subtitle">Minutes</div>
+                </div>
+              </div>
+
+              <div class="card bg-transparent border-0 text-center time-block">
+                <div class="card-body p-2">
+                  <div id="seconds" class="time-value">—</div>
+                  <div class="small subtitle">Seconds</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <a href="https://wicked-countdown.vercel.app/wicked.ics" target="_blank" class="btn btn-outline-light btn-sm me-2">Add to Calendar</a>
+              <button id="shareBtn" class="btn btn-light btn-sm">Share</button>
+            </div>
+
+            <p class="mt-3 text-muted small">Time shown is based on UK time (GMT).</p>
+
+          </div>
+
+          <footer class="pt-3 border-top border-secondary mt-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small>Enjoy the show — <span style="color:var(--wicked-green)">for good</span> ✨</small>
+              </div>
+              <div>
+                <small class="text-muted">Built with ❤️ & Bootstrap</small>
+              </div>
+            </div>
+          </footer>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // UK release target: 21 Nov 2025, 00:00:00 GMT (UTC)
+    const targetUtc = Date.UTC(2025, 10, 21, 0, 0, 0);
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minsEl = document.getElementById('minutes');
+    const secsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const now = new Date();
+      const nowUtc = Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds()
+      );
+
+      let diff = targetUtc - nowUtc;
+
+      if (diff <= 0) {
+        daysEl.textContent = '0';
+        hoursEl.textContent = '0';
+        minsEl.textContent = '0';
+        secsEl.textContent = '0';
+        clearInterval(timerInterval);
+        const lead = document.querySelector('.lead');
+        if (lead) lead.textContent = 'Released — enjoy the movie!';
+        return;
+      }
+
+      const sec = 1000, min = sec * 60, hour = min * 60, day = hour * 24;
+      const days = Math.floor(diff / day);
+      diff -= days * day;
+      const hours = Math.floor(diff / hour);
+      diff -= hours * hour;
+      const minutes = Math.floor(diff / min);
+      diff -= minutes * min;
+      const seconds = Math.floor(diff / sec);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minsEl.textContent = String(minutes).padStart(2, '0');
+      secsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    const timerInterval = setInterval(updateCountdown, 1000);
+
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const shareData = {
+        title: 'Wicked — For Good (UK release countdown)',
+        text: `Releases in ${daysEl.textContent} days — UK cinemas on 21 Nov 2025`,
+        url: location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){ }
+      } else {
+        try {
+          await navigator.clipboard.writeText(`${shareData.title} — ${shareData.text} ${shareData.url}`);
+          alert('Copied share text to clipboard.');
+        } catch(e){
+          alert('Share not supported');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
